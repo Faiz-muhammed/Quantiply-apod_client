@@ -8,7 +8,7 @@ function App() {
   let initialData = {
     copyright: "",
     date: "",
-    explanation: "vvvv",
+    explanation: "",
     media_type: "",
     title: "",
     url: "",
@@ -27,6 +27,9 @@ function App() {
 
   const handleChange = (selectedDate) => {
     let date = convert(selectedDate);
+     if(date>convert(new Date())){
+       date=convert(new Date());
+     }
      setStartDate(selectedDate)
     axios.get(`http://localhost:3001/astronomy/apod/${date}`).then((res) => {
       console.log(res.data);
